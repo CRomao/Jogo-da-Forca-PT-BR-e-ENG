@@ -75,6 +75,25 @@ BONECO = ['''
             ''']
 palavras = 0
 escolhida = 0
+
+def validarPalavra():
+    global escolhida
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("Não é uma palavra válida!\n")
+    print("OBS: Digite a palavra sem acentos e sem 'Ç'.")
+    print("Deve conter no mínimo duas letras - devendo ser realmente uma palavra! -  e não pode ter dígitos!")
+    escolhida = str(input("\nDigite a palavra:")).upper()
+
+def mensagem():
+    global BONECO, letrasE, escolhida, linhas, letrasT
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(BONECO[letrasE])
+    for i in range(len(escolhida)):
+        print(linhas[i], end=' ')
+    print('\n')
+    print('Letras erradas: ',end='')
+    for i in range(len(letrasT)):
+
 print("-=-=-=-JOGO DA FORCA-=-=-=-\n\n")
 print("1 - Player\n")
 print("ou\n")
@@ -90,11 +109,7 @@ elif x == '2':
     escolhida = str(input("\nDigite a palavra:")).upper()
     while len(escolhida) == 1 or escolhida in '1234567890Ç-=+[]()*&¨%$#@!´~/;.,<>:?`''""ÁÀÉÈÍÌÓÒÚÙÃÕÂÊÎÔÛ':
         #'1234567890Ç-=+[]()*&¨%$#@!´~/;.,<>:?`''""ÁÀÉÈÍÌÓÒÚÙÃÕÂÊÎÔÛ'
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print("Não é uma palavra válida!\n")
-        print("OBS: Digite a palavra sem acentos e sem 'Ç'.")
-        print("Deve conter no mínimo duas letras - devendo ser realmente uma palavra! -  e não pode ter dígitos!")
-        escolhida = str(input("\nDigite a palavra:")).upper()
+        validarPalavra()
 while x != '1' and x != '2':
     os.system('cls' if os.name == 'nt' else 'clear')
     print("Opção inválida!\n")
@@ -109,11 +124,7 @@ while x != '1' and x != '2':
         escolhida = str(input("\nDigite a palavra:")).upper()
         while len(escolhida) == 1 or escolhida in '1234567890Ç-=+[]()*&¨%$#@!´~/;.,<>:?`''""ÁÀÉÈÍÌÓÒÚÙÃÕÂÊÎÔÛ':
             # '1234567890Ç-=+[]()*&¨%$#@!´~/;.,<>:?`''""ÁÀÉÈÍÌÓÒÚÙÃÕÂÊÎÔÛ'
-            os.system('cls' if os.name == 'nt' else 'clear')
-            print("Não é uma palavra válida!\n")
-            print("OBS: Digite a palavra sem acentos e sem 'Ç'.")
-            print("Deve conter no mínimo duas letras - devendo ser realmente uma palavra! -  e não pode ter dígitos!")
-            escolhida = str(input("\nDigite a palavra:")).upper()
+            validarPalavra()
 os.system('cls' if os.name == 'nt' else 'clear')
 #palavras = 'ARROZ FEIJAO CENOURA CEBOLA MAU GATO GENTE PESSOA LOBO CACHORRO SEGUNDO SEGUNDA TERCEIRO JOGO MENOS MAIS FRUTA MELANCIA ARQUIVO NAVEGADOR'.split()
 #escolhida = random.choice(palavras)
@@ -145,27 +156,11 @@ while a == 1:
         for i in range(len(escolhida)):
             if jogador == escolhida[i]:
                 linhas[i] = jogador
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print(BONECO[letrasE])
-        for i in range(len(escolhida)):
-            print(linhas[i], end=' ')
-        print('\n')
-        print('Letras erradas: ',end='')
-        for i in range(len(letrasT)):
-            print(letrasT[i], end=' ')
-        print()
+        mensagem()
     else:
         letrasT.append(jogador)
         letrasE = letrasE + 1
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print(BONECO[letrasE])
-        for i in range(len(escolhida)):
-            print(linhas[i], end=' ')
-        print('\n')
-        print('Letras erradas: ', end='')
-        for i in range(len(letrasT)):
-            print(letrasT[i], end=' ')
-        print()
+        mensagem()
     for i in range(len(linhas)):
         if linhas[i] in 'ABCDEFGHIJKLMNOPQRSTUVWYXZ':
             cont = cont + 1
